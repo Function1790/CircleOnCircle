@@ -7,8 +7,8 @@ const data = {
     width: canvas.width,
     height: canvas.height,
     O: { x: 400, y: 400 },
-    Length: 7,
-    Radius: 250,
+    Length: 8,
+    Radius: 100,
 }
 
 let seta = 0
@@ -63,13 +63,13 @@ class Circle {
         let O = this.Origin
         let pos = this.pos
         ctx.beginPath()
-        ctx.strokeStyle = 'rgba(0,0,0,0.1)'
-        ctx.arc(O.x, O.y, this.radius, 0, PI2)
+        ctx.strokeStyle = 'rgba(255,255,255,0.1)'
+        ctx.arc(O.x, O.y, Math.floor(this.radius), 0, PI2)
         ctx.stroke()
         ctx.closePath()
 
-        ctx.strokeStyle = `rgb(105,${this.index * dRGB},255`
-        lineTo(O.x, O.y, pos.x, pos.y)
+        ctx.strokeStyle = `rgb(${this.index * dRGB},${255 -this.index * dRGB},215`
+        lineTo(O.x, O.y, Math.floor(pos.x), Math.floor(pos.y))
 
 
     }
@@ -84,7 +84,7 @@ class Circle {
 const renderObj = []
 
 for (var i = 0; i < data.Length; i++) {
-    renderObj.push(new Circle(i, data.Radius / (i+1), renderObj[i - 1], (i + 1) * 0.01))
+    renderObj.push(new Circle(i, data.Radius / (i/3 + 1), renderObj[i - 1], (i+ 1) * 0.01))
 }
 
 function render() {
